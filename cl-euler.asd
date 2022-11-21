@@ -9,4 +9,7 @@
                (:file "problem-2")
                (:file "problem-3")
                (:file "problem-4")
-               (:file "problem-5")))
+               (:file "problem-5")
+               (:file "problem-6")
+               (:file "problem-7")
+               (:file "problem-8")))
