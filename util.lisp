@@ -93,3 +93,7 @@
                              (- start 1)
                              (+ start 1))
                          end))))
+
+
+(defun sum (seq)
+  (apply #'+ seq))
