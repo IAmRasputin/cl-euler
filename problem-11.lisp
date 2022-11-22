@@ -56,14 +56,20 @@
                       for c from col upto (+ col 3)
                       collect (cons r c)))))
 
+(defun series-product (coords-list)
+  (apply #'* (mapcar (lambda (c)
+                       (let ((row (car c))
+                             (col (cdr c)))
+                         (grid-at row col)))
+                     coords-list)))
 
 (defun problem-11 ()
-  (let (coords)
+  (let (products)
     (dotimes (row 20)
       (dotimes (col 20)
         (dolist (direction '(:up :down :left :right :upleft :upright :downleft :downright))
           ;; Triple-nested, baybee
           (let ((test-coords (series-coords row col direction)))
             (when (validate-coords test-coords)
-              (push test-coords coords))))))
-    coords))
+              (push (series-product test-coords) products))))))
+    (apply #'max products)))
