@@ -70,6 +70,14 @@
     (when (zerop (mod n prime))
       (return (cons prime (prime-factors (/ n prime)))))))
 
+(defun all-factors (n)
+  (let (factors)
+    (dolist (i (range 1 (ceiling (/ n 2))))
+      (when (zerop (mod n i))
+        (push i factors)))
+    (push n factors)
+    (nreverse (remove-duplicates factors))))
+
 ;; Strings
 
 (defun integer-to-string (n)
@@ -86,13 +94,13 @@
       (return nil))))
 
 ;; Lists
-(defun range (start end)
-  (if (= start end)
-      (list end)
-      (cons start (range (if (> start end)
-                             (- start 1)
-                             (+ start 1))
-                         end))))
+(defun range (start end &optional (step 1))
+  (cond
+    ((= start end) (list start))
+    ((> start end) (loop for n from start downto end by step
+                         collect n))
+    ((< start end) (loop for n from start upto end by step
+                         collect n))))
 
 
 (defun sum (seq)
