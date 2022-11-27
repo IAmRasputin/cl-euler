@@ -2,7 +2,7 @@
   :description "Project Euler"
   :version "0.0.1"
   :license "GPLv3"
-  :depends-on ("alexandria")
+  :depends-on ("alexandria" "log4cl")
   :components ((:file "package")
                (:file "util")
                (:file "problem-1")

@@ -1,5 +1,7 @@
 (in-package :cl-euler)
 
+;; Logging
+
 ;; Loops
 
 (defmacro while (condition &body body)
@@ -63,6 +65,7 @@
     (load-primes-until n))
   (not (null (find n *prime-numbers*))))
 
+
 (defun prime-factors (n)
   (dovector (prime *prime-numbers*)
     (when (> prime n)
@@ -77,6 +80,62 @@
         (push i factors)))
     (push n factors)
     (nreverse (remove-duplicates factors))))
+
+(defun number-of-divisors (num)
+  "Shamelessly copied from a c-ish algorith on the internet"
+  ;; Maybe someday I'll really wrap my head around this and make it more lispy
+  (let ((n num)
+        (i 2)
+        (p 1))
+    (if (= 1 n)
+        1
+        (progn
+          (while (<= (* i i) n)
+            (let ((c 1))
+              (while (zerop (mod n i))
+                (setf n (floor (/ n i)))
+                (incf c))
+              (incf i)
+              (setf p (* p c))))
+          (when (or (= n num) (> n 1))
+            (setf p (* p 2)))
+          p))))
+
+;; Triangle numbers (seems familiar...)
+(defvar *triangle-numbers*
+  (make-array 10
+              :initial-contents '(nil 1 3 6 10 15 21 28 36 45)
+              :adjustable t
+              :fill-pointer t))
+
+(defun find-next-triangle-number ()
+  ;; Given the triangles in *triangle-numbers*, find the next one, return it (don't append, be functional)
+  (+ (length *triangle-numbers*) (vlast *triangle-numbers*)))
+
+(defun load-next-triangle-number (&optional (n 1))
+  (dotimes (i n)
+    (vector-push-extend (find-next-triangle-number) *triangle-numbers*))
+  *triangle-numbers*)
+
+
+(defun load-triangle-numbers-until (n)
+  (let ((len (length *triangle-numbers*)))
+    (while (>= n len)
+      (load-next-triangle-number))))
+
+(defun is-triangle-number (n)
+  (when (> n (vlast *triangle-numbers*))
+    (load-triangle-numbers-until n))
+  (not (null (find n *triangle-numbers*))))
+
+(defun nth-triangle-num (n)
+  (let ((tri-num-len (length *triangle-numbers*)))
+    (if (< n tri-num-len)
+        (progn
+          (aref *triangle-numbers* n))
+        (progn
+          (load-triangle-numbers-until (+ tri-num-len 10))
+          (aref *triangle-numbers* n)))))
 
 ;; Strings
 
