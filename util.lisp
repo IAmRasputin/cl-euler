@@ -1,5 +1,9 @@
 (in-package :cl-euler)
 
+;; Files
+(defun get-input-file (filename)
+  ())
+
 ;; Logging
 
 ;; Loops

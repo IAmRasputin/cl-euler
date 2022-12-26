@@ -4,7 +4,7 @@
 (in-package :cl-euler)
 
 (defun problem-13 ()
-  (let* ((number-strings (uiop:read-file-lines "problem-13.txt"))
+  (let* ((number-strings (uiop:read-file-lines "inputs/problem-13.txt"))
          (numbers (mapcar #'parse-integer number-strings))
          (sum-of-numbers (sum numbers))
          (sum-string (integer-to-string sum-of-numbers)))
