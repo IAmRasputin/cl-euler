@@ -3,10 +3,9 @@
   :version "0.0.1"
   :license "GPLv3"
   :depends-on ("alexandria" "log4cl")
+  :serial t
   :components ((:file "package")
                (:file "util")
-               (:module "inputs"
-                        :components ((:static-file "problem-13.txt")))
                (:module "solutions"
                 :components ((:file "problem-1")
                              (:file "problem-2")
