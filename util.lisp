@@ -1,8 +1,11 @@
 (in-package :cl-euler)
 
 ;; Files
-(defun get-input-file (filename)
-  ())
+(defun read-file-lines (filepath)
+  (uiop:read-file-lines (asdf:system-relative-pathname :cl-euler filepath)))
+
+(defun read-file-string (filepath)
+  (uiop:read-file-string (asdf:system-relative-pathname :cl-euler filepath)))
 
 ;; Logging
 
@@ -59,6 +62,16 @@
     (vector-push-extend (find-next-prime) *prime-numbers*))
   *prime-numbers*)
 
+(defun prime-factors (n)
+  (load-primes-until (ceiling (sqrt n)))
+  (let (factors)
+    (dovector (i *prime-numbers*)
+      (when (zerop (mod n i))
+        (push i factors)
+        (push (/ n i) factors)))
+    (push n factors)
+    (nreverse (remove-duplicates factors))))
+
 
 (defun load-primes-until (n)
   (while (>= n (vlast *prime-numbers*))
@@ -70,18 +83,12 @@
   (not (null (find n *prime-numbers*))))
 
 
-(defun prime-factors (n)
-  (dovector (prime *prime-numbers*)
-    (when (> prime n)
-      (load-next-prime 100))
-    (when (zerop (mod n prime))
-      (return (cons prime (prime-factors (/ n prime)))))))
-
 (defun all-factors (n)
   (let (factors)
-    (dolist (i (range 1 (ceiling (/ n 2))))
+    (dolist (i (range 1 (ceiling (sqrt n))))
       (when (zerop (mod n i))
-        (push i factors)))
+        (push i factors)
+        (push (/ n i) factors)))
     (push n factors)
     (nreverse (remove-duplicates factors))))
 
@@ -105,41 +112,9 @@
             (setf p (* p 2)))
           p))))
 
-;; Triangle numbers (seems familiar...)
-(defvar *triangle-numbers*
-  (make-array 10
-              :initial-contents '(nil 1 3 6 10 15 21 28 36 45)
-              :adjustable t
-              :fill-pointer t))
-
-(defun find-next-triangle-number ()
-  ;; Given the triangles in *triangle-numbers*, find the next one, return it (don't append, be functional)
-  (+ (length *triangle-numbers*) (vlast *triangle-numbers*)))
-
-(defun load-next-triangle-number (&optional (n 1))
-  (dotimes (i n)
-    (vector-push-extend (find-next-triangle-number) *triangle-numbers*))
-  *triangle-numbers*)
-
-
-(defun load-triangle-numbers-until (n)
-  (let ((len (length *triangle-numbers*)))
-    (while (>= n len)
-      (load-next-triangle-number))))
-
-(defun is-triangle-number (n)
-  (when (> n (vlast *triangle-numbers*))
-    (load-triangle-numbers-until n))
-  (not (null (find n *triangle-numbers*))))
-
+;; breakthrough: "triangular numbers" are just a subset of binomial coefficients
 (defun nth-triangle-num (n)
-  (let ((tri-num-len (length *triangle-numbers*)))
-    (if (< n tri-num-len)
-        (progn
-          (aref *triangle-numbers* n))
-        (progn
-          (load-triangle-numbers-until (+ tri-num-len 10))
-          (aref *triangle-numbers* n)))))
+  (alexandria:binomial-coefficient (1+ n) 2))
 
 ;; Strings
 
