@@ -2,7 +2,7 @@
 
 (in-package :cl-euler)
 
-(defun problem-7 ()
+(defsolution (7)
   (let ((size (length *prime-numbers*)))
     (when (> 10001 size)
       (load-next-prime (- 10001 size)))

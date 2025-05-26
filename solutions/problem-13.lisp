@@ -3,7 +3,7 @@
 
 (in-package :cl-euler)
 
-(defun problem-13 ()
+(defsolution (13)
   (let* ((number-strings (read-file-lines "inputs/problem-13.txt"))
          (numbers (mapcar #'parse-integer number-strings))
          (sum-of-numbers (sum numbers))

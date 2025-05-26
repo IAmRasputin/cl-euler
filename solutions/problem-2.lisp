@@ -10,5 +10,5 @@
             next (apply #'+ (last seq 2))))
     seq))
 
-(defun problem-2 ()
+(defsolution (2)
   (apply #'+ (remove-if #'oddp (fibonacci-until 4000000))))

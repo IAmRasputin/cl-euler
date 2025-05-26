@@ -37,5 +37,5 @@
                     candidates)))))
     candidates))
 
-(defun problem-9 ()
+(defsolution (9)
   (apply #'* (first (correct-sum-candidates))))

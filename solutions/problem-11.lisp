@@ -63,7 +63,7 @@
                          (grid-at row col)))
                      coords-list)))
 
-(defun problem-11 ()
+(defsolution (11)
   (let (products)
     (dotimes (row 20)
       (dotimes (col 20)

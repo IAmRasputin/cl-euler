@@ -2,7 +2,7 @@
 
 ;; What is the value of the first triangle number to have over five hundred divisors?
 
-(defun problem-12 ()
+(defsolution (12)
   ;; making triangle numbers on the fly
   (do* ((i 1 (1+ i))
         (sum 1 (+ sum i))

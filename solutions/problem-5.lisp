@@ -2,7 +2,7 @@
 
 (in-package :cl-euler)
 
-(defun problem-5 ()
+(defsolution (5)
   ;; Not putting this one in the utils, too specific
   (labels ((divisible-by-all (n)
              (dotimes (count 18)

@@ -2,7 +2,7 @@
 
 (in-package :cl-euler)
 
-(defun problem-10 ()
+(defsolution (10)
   (load-primes-until 2000000)
   (let ((sum 0))
     (dovector (prime  *prime-numbers*)

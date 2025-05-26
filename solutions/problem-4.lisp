@@ -1,7 +1,7 @@
 ;; Find the largest palindrome made from the product of two 3-digit numbers.
 (in-package #:cl-euler)
 
-(defun problem-4 ()
+(defsolution (4)
   (let ((max 0))
     (loop for x from 100 upto 999 do
       (loop for y from 100 upto 999 do

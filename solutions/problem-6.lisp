@@ -11,6 +11,6 @@
   (let ((sum (apply #'+ seq)))
     (* sum sum)))
 
-(defun problem-6 ()
+(defsolution (6)
   (let ((numbers (range 1 100)))
     (abs (- (sum-of-squares numbers) (square-of-sum numbers)))))

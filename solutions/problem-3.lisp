@@ -4,5 +4,5 @@
 
 ;; Good news!  There's neato code for generating prime numbers in util.lisp
 
-(defun problem-3 ()
+(defsolution (3)
   (apply #'max (prime-factors 600851475143)))

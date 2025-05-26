@@ -7,7 +7,7 @@
 (defun multiple-of (factor x)
   (zerop (mod x factor)))
 
-(defun problem-1 ()
+(defsolution (1)
   (let (acc)
     (dotimes (i 1000)
       (when (or (multiple-of 3 i) (multiple-of 5 i))
