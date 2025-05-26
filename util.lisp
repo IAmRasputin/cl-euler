@@ -64,13 +64,8 @@
 
 (defun prime-factors (n)
   (load-primes-until (ceiling (sqrt n)))
-  (let (factors)
-    (dovector (i *prime-numbers*)
-      (when (zerop (mod n i))
-        (push i factors)
-        (push (/ n i) factors)))
-    (push n factors)
-    (nreverse (remove-duplicates factors))))
+  ;; TODO
+  )
 
 
 (defun load-primes-until (n)
@@ -82,6 +77,8 @@
     (load-primes-until n))
   (not (null (find n *prime-numbers*))))
 
+(defun prime-factors (n)
+  (load-primes-until (ceiling (sqrt n))))
 
 (defun all-factors (n)
   (let (factors)
