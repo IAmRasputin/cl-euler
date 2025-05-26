@@ -62,11 +62,17 @@
     (vector-push-extend (find-next-prime) *prime-numbers*))
   *prime-numbers*)
 
-(defun prime-factors (n)
-  (load-primes-until (ceiling (sqrt n)))
-  ;; TODO
-  )
-
+(defun prime-factors (num)
+  (load-primes-until (ceiling (sqrt num)))
+  (labels ((factorize (n)
+             (dovector (prime *prime-numbers*)
+               (when (> prime n)
+                 (return nil))
+               (when (zerop (mod n prime))
+                 (return (cons prime (factorize (/ n prime))))))))
+    (let ((factors (factorize num)))
+      (unless (equal factors (list num))
+        (factorize num)))))
 
 (defun load-primes-until (n)
   (while (>= n (vlast *prime-numbers*))
