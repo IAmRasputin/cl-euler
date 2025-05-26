@@ -115,24 +115,31 @@
             (setf p (* p 2)))
           p))))
 
-;; breakthrough: "triangular numbers" are just a subset of binomial coefficients
 (defun nth-triangle-num (n)
   (alexandria:binomial-coefficient (1+ n) 2))
 
-;; Strings
+;; Integer gymnastics
 
 (defun integer-to-string (n)
   (format nil "~d" n))
 
-(defun is-palindrome (str)
-  (do* ((head-pointer 0
-                      (1+ head-pointer))
-        (tail-pointer (- (length str) 1)
-                      (- tail-pointer 1)))
-       ((>= head-pointer tail-pointer) t)
-    (unless (char= (aref str head-pointer)
-                   (aref str tail-pointer))
-      (return nil))))
+(defun digit-length (n)
+  (ceiling (log n 10)))
+
+(defun digits (num)
+  (cond
+    ((< num 0) (digits (abs num)))
+    ((zerop num) '(0))
+    (t 
+     (let* ((len (digit-length num))
+            (digits (loop for i from len downto 0 collect
+                     (mod (floor (/ num (expt 10 i))) 10))))
+       (if (zerop (first digits))
+           (cdr digits)
+           digits)))))
+
+(defun is-palindrome (seq)
+  (equal seq (reverse seq)))
 
 ;; Lists
 (defun range (start end &optional (step 1))
