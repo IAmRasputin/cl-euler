@@ -7,3 +7,5 @@
     (when (> 10001 size)
       (load-next-prime (- 10001 size)))
     (aref *prime-numbers* 10000)))
+
+(the-answer-is 7 104743)

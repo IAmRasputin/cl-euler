@@ -9,3 +9,5 @@
          (sum-of-numbers (sum numbers))
          (sum-string (integer-to-string sum-of-numbers)))
     (subseq sum-string 0 10)))
+
+(the-answer-is 13 5537376230)

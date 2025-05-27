@@ -6,6 +6,7 @@
   :serial t
   :components ((:file "package")
                (:file "util")
+               (:file "run")
                (:module "solutions"
                 :components ((:file "problem-1")
                              (:file "problem-2")
@@ -22,6 +23,5 @@
                              (:file "problem-13")
                              (:file "problem-25")
                              ))
-                 (:file "run")
                  (:file "test")
                (:static-file "README.md")))

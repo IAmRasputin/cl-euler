@@ -1,0 +1,23 @@
+(in-package :cl-euler)
+
+(defvar *collatz-length-cache* (make-hash-table))
+(defun collatz-length (start)
+  (if (>= 1 start)
+      (setf (gethash start *collatz-length-cache*) 1) 
+      (or (gethash start *collatz-length-cache*)
+          (setf (gethash start *collatz-length-cache*)
+                (1+ (collatz-length (if (oddp start)
+                                        (1+ (* start 3))
+                                        (/ start 2))))))))
+
+(defsolution (14)
+  (let ((max 0)
+        (longest-start 0))
+    (dolist (start (range 1 999999))
+      (let ((c-len (collatz-length start)))
+        (when (< max c-len)
+          (setf max c-len)
+          (setf longest-start start))))
+    longest-start))
+
+(the-answer-is 14 837799)

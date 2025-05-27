@@ -1,3 +1,4 @@
+(in-package :cl-euler)
 ;; Find the thirteen adjacent digits in the 1000-digit number that have the
 ;; greatest product. What is the value of this product?
 
@@ -14,3 +15,5 @@
                              (parse-integer (string (aref *the-number* idx))))
                            index-range)))
       (setf highest (max highest (apply #'* digits))))))
+
+(the-answer-is 8 23514624000)

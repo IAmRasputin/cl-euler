@@ -13,3 +13,5 @@
       (when (or (multiple-of 3 i) (multiple-of 5 i))
         (push i acc)))
     (apply #'+ acc)))
+
+(the-answer-is 1 233168)

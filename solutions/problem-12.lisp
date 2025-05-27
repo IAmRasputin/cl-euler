@@ -9,3 +9,5 @@
         (factors (all-factors sum)
                  (all-factors sum)))
       ((> (length factors) 500) sum)))
+
+(the-answer-is 12 76576500)

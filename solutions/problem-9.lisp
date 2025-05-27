@@ -39,3 +39,5 @@
 
 (defsolution (9)
   (apply #'* (first (correct-sum-candidates))))
+
+(the-answer-is 9 31875000)

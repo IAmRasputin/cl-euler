@@ -10,3 +10,5 @@
                      (> product max))
             (setf max product)))))
     max))
+
+(the-answer-is 4 906609)

@@ -11,3 +11,5 @@
              t))
     (do* ((index 20 (+ index 20)))
         ((divisible-by-all index) index))))
+
+(the-answer-is 5 232792560)

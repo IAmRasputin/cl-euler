@@ -14,3 +14,5 @@
 (defsolution (6)
   (let ((numbers (range 1 100)))
     (abs (- (sum-of-squares numbers) (square-of-sum numbers)))))
+
+(the-answer-is 6 25164150)

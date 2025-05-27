@@ -73,3 +73,5 @@
             (when (validate-coords test-coords)
               (push (series-product test-coords) products))))))
     (apply #'max products)))
+
+(the-answer-is 11 70600674)

@@ -10,3 +10,5 @@
         (return))
       (incf sum prime))
     sum))
+
+(the-answer-is 10 142913828922)

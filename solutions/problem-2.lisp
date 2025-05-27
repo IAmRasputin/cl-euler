@@ -12,3 +12,5 @@
 
 (defsolution (2)
   (apply #'+ (remove-if #'oddp (fibonacci-until 4000000))))
+
+(the-answer-is 2 4613732)
